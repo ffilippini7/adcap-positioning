@@ -12,7 +12,7 @@ import openpyxl
 import sys
 import os
 
-EXCEL_FILE = "Tabla_Positioning.xlsx"
+EXCEL_FILE = "Tabla Positioning.xlsx"
 OUTPUT_FILE = "data.json"
 
 # Map hex colors to recommendation levels
