@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adcap — Positioning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #12233d;
+      --navy-mid: #1a3055;
+      --steel: #8899b0;
+      --silver: #c4cfdd;
+      --white: #f0f4f8;
+      --green: #22c55e;
+      --green-bg: rgba(34,197,94,0.10);
+      --green-border: rgba(34,197,94,0.25);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245,158,11,0.10);
+      --amber-border: rgba(245,158,11,0.25);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.10);
+      --red-border: rgba(239,68,68,0.25);
+      --up-green: #22c55e;
+      --down-red: #ef4444;
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(255,255,255,0.06);
+      --divider: rgba(255,255,255,0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .header-left h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      color: var(--white);
+    }
+
+    .header-left .subtitle {
+      font-size: 14px;
+      color: var(--steel);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .brand {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--steel);
+      display: block;
+      text-align: right;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: var(--steel);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .legend-dot.bullish { background: var(--green); }
+    .legend-dot.neutral { background: var(--amber); }
+    .legend-dot.bearish { background: var(--red); }
+
+    /* Table */
+    .positioning-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .positioning-table thead th {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--steel);
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .positioning-table thead th.center {
+      text-align: center;
+    }
+
+    /* Category header row */
+    .category-row td {
+      padding: 20px 16px 8px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .category-row:first-child td {
+      border-top: none;
+    }
+
+    .category-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .category-macro {
+      font-size: 13px;
+      color: var(--steel);
+      margin-top: 2px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Sub rows */
+    .sub-row td {
+      padding: 10px 16px;
+      font-size: 14px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,0.025);
+    }
+
+    .sub-row:last-child td {
+      border-bottom: none;
+    }
+
+    .sub-name {
+      color: var(--silver);
+      padding-left: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* Recommendation dot */
+    .rec-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      position: relative;
+    }
+    .rec-dot.bullish {
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(34,197,94,0.4);
+    }
+    .rec-dot.neutral {
+      background: var(--amber);
+      box-shadow: 0 0 8px rgba(245,158,11,0.4);
+    }
+    .rec-dot.bearish {
+      background: var(--red);
+      box-shadow: 0 0 8px rgba(239,68,68,0.4);
+    }
+
+    .rec-cell {
+      text-align: center;
+    }
+
+    /* Change arrows */
+    .change-cell {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .change-up { color: var(--up-green); }
+    .change-down { color: var(--down-red); }
+    .change-unchanged { color: var(--steel); opacity: 0.4; }
+
+    /* Macro text */
+    .macro-text {
+      color: var(--silver);
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 480px;
+    }
+
+    /* Instrument badge */
+    .instrument-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--silver);
+      white-space: nowrap;
+    }
+
+    .instrument-badge.bullish {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: var(--green);
+    }
+    .instrument-badge.neutral {
+      background: var(--amber-bg);
+      border-color: var(--amber-border);
+      color: var(--amber);
+    }
+    .instrument-badge.bearish {
+      background: var(--red-bg);
+      border-color: var(--red-border);
+      color: var(--red);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--divider);
+      font-size: 12px;
+      color: var(--steel);
+      opacity: 0.6;
+      text-align: center;
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--steel);
+      font-size: 14px;
+    }
+
+    .error {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--red);
+      font-size: 14px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .positioning-table tbody tr {
+      animation: fadeIn 0.4s ease both;
+    }
+
+    .positioning-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+    .positioning-table tbody tr:nth-child(2) { animation-delay: 0.08s; }
+    .positioning-table tbody tr:nth-child(3) { animation-delay: 0.11s; }
+    .positioning-table tbody tr:nth-child(4) { animation-delay: 0.14s; }
+    .positioning-table tbody tr:nth-child(5) { animation-delay: 0.17s; }
+    .positioning-table tbody tr:nth-child(6) { animation-delay: 0.20s; }
+    .positioning-table tbody tr:nth-child(7) { animation-delay: 0.23s; }
+    .positioning-table tbody tr:nth-child(8) { animation-delay: 0.26s; }
+    .positioning-table tbody tr:nth-child(9) { animation-delay: 0.29s; }
+    .positioning-table tbody tr:nth-child(10) { animation-delay: 0.32s; }
+    .positioning-table tbody tr:nth-child(11) { animation-delay: 0.35s; }
+    .positioning-table tbody tr:nth-child(12) { animation-delay: 0.38s; }
+    .positioning-table tbody tr:nth-child(13) { animation-delay: 0.41s; }
+    .positioning-table tbody tr:nth-child(14) { animation-delay: 0.44s; }
+    .positioning-table tbody tr:nth-child(15) { animation-delay: 0.47s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 24px 16px 60px; }
+      .header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .header-left h1 { font-size: 24px; }
+      .brand { font-size: 22px; }
+      .legend { flex-wrap: wrap; gap: 16px; }
+      .positioning-table thead { display: none; }
+      .positioning-table, .positioning-table tbody, .positioning-table tr, .positioning-table td {
+        display: block;
+      }
+      .category-row td { padding: 16px 12px 6px; }
+      .sub-row { 
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4px 12px;
+        padding: 12px;
+        border-bottom: 1px solid var(--divider);
+      }
+      .sub-row td { padding: 4px 0; border: none; }
+      .sub-name { padding-left: 0; }
+      .rec-cell, .change-cell { text-align: left; }
+      .macro-text { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <h1>Recomendación</h1>
+        <div class="subtitle" id="date-line">Positioning Table</div>
+      </div>
+      <div class="brand">
+        Adcap
+        <span>Grupo Financiero</span>
+      </div>
+    </header>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot bullish"></span> Optimista</div>
+      <div class="legend-item"><span class="legend-dot neutral"></span> Neutral</div>
+      <div class="legend-item"><span class="legend-dot bearish"></span> Pesimista</div>
+    </div>
+
+    <div id="table-root">
+      <div class="loading">Cargando datos…</div>
+    </div>
+
+    <div class="footer" id="footer"></div>
+  </div>
+
+  <script>
+    const CHANGE_SYMBOLS = { up: '↑', down: '↓', unchanged: '–' };
+    const CHANGE_CLASSES = { up: 'change-up', down: 'change-down', unchanged: 'change-unchanged' };
+
+    function formatDate(dateStr) {
+      // dateStr like "20260413"
+      if (!dateStr || dateStr.length !== 8) return dateStr;
+      const y = dateStr.slice(0, 4);
+      const m = dateStr.slice(4, 6);
+      const d = dateStr.slice(6, 8);
+      const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      return `${parseInt(d)} de ${months[parseInt(m)-1]} ${y}`;
+    }
+
+    function renderTable(data) {
+      const root = document.getElementById('table-root');
+      const dateLine = document.getElementById('date-line');
+      const footer = document.getElementById('footer');
+
+      dateLine.textContent = formatDate(data.date);
+      footer.textContent = `Última actualización: ${formatDate(data.date)}`;
+
+      let html = `
+        <table class="positioning-table">
+          <thead>
+            <tr>
+              <th style="width:180px">Segmento</th>
+              <th class="center" style="width:70px">Recom.</th>
+              <th class="center" style="width:70px">Cambio</th>
+              <th>Principales Factores Macro</th>
+              <th style="width:120px">Instrumento</th>
+            </tr>
+          </thead>
+          <tbody>`;
+
+      for (const cat of data.categories) {
+        // Category header row
+        html += `
+          <tr class="category-row">
+            <td>
+              <div class="category-name">${cat.name}</div>
+              ${cat.macro ? `<div class="category-macro">${cat.macro}</div>` : ''}
+            </td>
+            <td class="rec-cell"><span class="rec-dot ${cat.recommendation}"></span></td>
+            <td class="change-cell"><span class="${CHANGE_CLASSES[cat.change]}">${CHANGE_SYMBOLS[cat.change]}</span></td>
+            <td></td>
+            <td>${cat.instrument ? `<span class="instrument-badge ${cat.recommendation}">${cat.instrument}</span>` : ''}</td>
+          </tr>`;
+
+        // Sub rows
+        for (const sub of cat.subcategories) {
+          html += `
+            <tr class="sub-row">
+              <td><span class="sub-name">${sub.name}</span></td>
+              <td class="rec-cell"><span class="rec-dot ${sub.recommendation}"></span></td>
+              <td class="change-cell"><span class="${CHANGE_CLASSES[sub.change]}">${CHANGE_SYMBOLS[sub.change]}</span></td>
+              <td><span class="macro-text">${sub.macro}</span></td>
+              <td>${sub.instrument ? `<span class="instrument-badge ${sub.recommendation}">${sub.instrument}</span>` : ''}</td>
+            </tr>`;
+        }
+      }
+
+      html += '</tbody></table>';
+      root.innerHTML = html;
+    }
+
+    // Load data
+    fetch('data.json')
+      .then(r => {
+        if (!r.ok) throw new Error('No se pudo cargar data.json');
+        return r.json();
+      })
+      .then(renderTable)
+      .catch(err => {
+        document.getElementById('table-root').innerHTML =
+          `<div class="error">Error: ${err.message}</div>`;
+      });
+  </script>
+</body>
+</html>

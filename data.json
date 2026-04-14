@@ -1,0 +1,103 @@
+{
+  "date": "20260413",
+  "categories": [
+    {
+      "name": "CER",
+      "recommendation": "bullish",
+      "change": "unchanged",
+      "macro": "Se mantienen los riesgos de inflación de corto plazo.",
+      "instrument": "",
+      "subcategories": [
+        {
+          "name": "Corto",
+          "recommendation": "bullish",
+          "change": "unchanged",
+          "macro": "El mercado sigue mostrando optimismo respecto de la inflación de corto plazo. Mañana se publica el dato de inflación de marzo de 2026, y creemos que podría seguir favoreciendo a esos segmentos de la curva.",
+          "instrument": "TZX26"
+        },
+        {
+          "name": "Medio",
+          "recommendation": "bullish",
+          "change": "unchanged",
+          "macro": "",
+          "instrument": "TZX27"
+        },
+        {
+          "name": "Largo",
+          "recommendation": "neutral",
+          "change": "unchanged",
+          "macro": "Esperamos que el proceso desinflacionario se re-encauce en el mediano plazo.",
+          "instrument": "DICP"
+        }
+      ]
+    },
+    {
+      "name": "Tasa Fija",
+      "recommendation": "neutral",
+      "change": "unchanged",
+      "macro": "La fuerte compresión de la curva de TF disminuye su atractivo relativo.",
+      "instrument": "",
+      "subcategories": [
+        {
+          "name": "Corto",
+          "recommendation": "neutral",
+          "change": "unchanged",
+          "macro": "Los riesgos de inflación y, en mucha menor medida, de FX, reducen el atractivo relativo de los bonos a TF cortos/medios. Dicho eso, seguimos prefiriendo la parte más corta de la curva.",
+          "instrument": "T30J6"
+        },
+        {
+          "name": "Medio",
+          "recommendation": "neutral",
+          "change": "unchanged",
+          "macro": "",
+          "instrument": "T15E7"
+        },
+        {
+          "name": "Largo",
+          "recommendation": "bearish",
+          "change": "down",
+          "macro": "A los riesgos anteriores se suma el riesgo político, que limita el upside de la parte larga de la curva.",
+          "instrument": "TY30P"
+        }
+      ]
+    },
+    {
+      "name": "Tipo de Cambio",
+      "recommendation": "neutral",
+      "change": "unchanged",
+      "macro": "En el corto plazo, el mix de política monetateria favorece un ARS entre 1350-1400, con riesgos al alza.",
+      "instrument": "",
+      "subcategories": []
+    },
+    {
+      "name": "Curva en Dólares",
+      "recommendation": "bullish",
+      "change": "unchanged",
+      "macro": "El atractivo de la curva en dólares radica en el fuerte underperformance acumulado en las últimas semanas.",
+      "instrument": "",
+      "subcategories": [
+        {
+          "name": "Corto",
+          "recommendation": "bearish",
+          "change": "down",
+          "macro": "No vemos upside en la parte más corta de los bonos en dólares. ",
+          "instrument": "AO27-BPOC7"
+        },
+        {
+          "name": "Medio",
+          "recommendation": "bullish",
+          "change": "unchanged",
+          "macro": "La parte media de la curva mostró mayor resiliencia frente al risk-off global de las últimas semanas, lo que hoy limita su upside. En ese contexto, vemos una mejor relación riesgo-retorno en la parte larga de la curva.",
+          "instrument": "AL30"
+        },
+        {
+          "name": "Largo",
+          "recommendation": "bullish",
+          "change": "up",
+          "macro": "",
+          "instrument": "GD35"
+        }
+      ]
+    }
+  ]
+}
